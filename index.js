@@ -5,12 +5,12 @@ const app = express()
 require('dotenv').config()
 
 // Global variables
-const port = process.env.API_PORT
+const port = process.env.PORT
 
 app.get('/', (req, res) => {
     res.send('Hello world');
 })
 
-app.listen(port || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Application listening on port: ${port}`)
 })

@@ -17,9 +17,14 @@ const port = process.env.PORT;
 // Services addition
 const mqService = require('./services/MQService')
 
+// Controllers
+const DestinationController = require('./controllers/destination.controller')
+
 app.get('/', (req, res) => {
     res.send('Hello world');
 })
+
+app.get('/destinations', DestinationController.getDestinations);
 
 app.post('/testMsg', async (req, res) => {
     const {queueName, payload} = req.body;
@@ -31,6 +36,13 @@ app.post('/testMsg', async (req, res) => {
     };
 
     res.status(200).send(data);
+
+});
+
+app.get('/getMsg', async (req, res) => {
+    const consumedData = await mqService.consumeQueueData("client-search");
+    console.log("sendingData");
+    res.status(200).send(consumedData);
 
 });
 

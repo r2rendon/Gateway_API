@@ -26,6 +26,8 @@ app.get('/', (req, res) => {
 
 app.get('/destinations', DestinationController.getDestinations);
 
+app.get('/experiences', DestinationController.getExperiences);
+
 app.post('/testMsg', async (req, res) => {
     const {queueName, payload} = req.body;
 
